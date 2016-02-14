@@ -1,9 +1,24 @@
 $(function()
 {
 
-  $("#btnContarVocales").click(function(event)
-    {
-      var inPalabra = $("#PalabraV").val();
+			$("#PalabraV").keyup(function(){
+				ContarVocales();
+			});
+
+			$("#PalabraC").keyup(function(){
+				ContarConsonantes();
+			});
+
+	  
+	        $("#btnNumeroCapicua").click(function(event)
+	            {
+	              var inNumero = $("#NumeroCapi").val();
+	              $("#DatosModalCapicua").html(numeroCapicua(inNumero));
+	        });
+
+
+function ContarVocales (){
+	var inPalabra = $("#PalabraV").val();
       var tablaVocales = CuentaVocales(inPalabra);
 	  if( inPalabra.length > 0 && isNaN(inPalabra)){
       var tds = ` <p>Cantidad de Vocales en la Palabra [--><b>${inPalabra}</b><--]</p>
@@ -28,11 +43,10 @@ $(function()
 	  }else{
 		$("#DatosModal").html('<p style="color: red;">Debe digitar un Valor de tipo Texto</p>');
 	  }
-    });
+}
 
-    $("#btnContarConsonantes").click(function(event)
-      {
-        var inPalabra = $("#PalabraC").val();
+function ContarConsonantes(){
+	 var inPalabra = $("#PalabraC").val();
         var tablaConsonantes = CuentaConsonantes (inPalabra);
 		if( inPalabra.length > 0 && isNaN(inPalabra)){
         var tds = ` <p>Cantidad de consonantes en la palabra [--><b>${inPalabra}</b><--]</p>
@@ -58,14 +72,7 @@ $(function()
 		}else{
 			$("#DatosModalConsonantes").html('<p style="color: red;">Debe digitar un Valor de tipo Texto</p>');
 		}
-      });
-
-
-          $("#btnNumeroCapicua").click(function(event)
-            {
-              var inNumero = $("#NumeroCapi").val();
-              $("#DatosModalCapicua").html(numeroCapicua(inNumero));
-            });
+}
 
 
 function CuentaVocales (Palabra){
